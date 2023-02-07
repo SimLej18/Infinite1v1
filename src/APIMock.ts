@@ -54,7 +54,7 @@ class API {
         }
 
         this.events["d5d4fef1-ed32-4c97-afa8-72c9a0154444"] = {
-            id : "c3d3fef1-ed32-4c97-afa8-72c9a01535e6",
+            id : "d5d4fef1-ed32-4c97-afa8-72c9a0154444",
             name : "Genesis32",
             players : [],
             pwdHash: this.hash("bonjour")

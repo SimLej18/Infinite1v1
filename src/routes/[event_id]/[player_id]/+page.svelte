@@ -37,7 +37,7 @@
     </div>
 </div>
 <div class="divider">MATCHS</div>
-<div class="grid gap-7 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5">
+<div class="grid gap-7 px-5 sm:grid-cols-1 md:grid-cols-3 xl:grid-cols-5">
     {#each data.event.players as {id, pseudo, status}}
         {#if id !== data.player}
             <div class="indicator w-full">
