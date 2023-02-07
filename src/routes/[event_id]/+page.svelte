@@ -13,7 +13,10 @@
             L'événement que vous cherchez n'existe pas ou plus. Il a peut-être été archivé.
         </p>
     {:else }
-        <h1>{data.event.name}</h1>
+        <div class="flex flex-row justify-between">
+            <h1>{data.event.name}</h1>
+            <a href="/{data.event.id}/admin"><button class="btn rounded-xl bg-primary"><h3>Admin</h3></button></a>
+        </div>
         {#if data.players.length === 0}
             <h2 class="mt-10">Pas encore de joueur...</h2>
         {:else}
