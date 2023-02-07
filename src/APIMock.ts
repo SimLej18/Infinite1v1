@@ -53,6 +53,13 @@ class API {
             pwdHash: this.hash("hello")
         }
 
+        this.events["d5d4fef1-ed32-4c97-afa8-72c9a0154444"] = {
+            id : "c3d3fef1-ed32-4c97-afa8-72c9a01535e6",
+            name : "Genesis32",
+            players : [],
+            pwdHash: this.hash("bonjour")
+        }
+
         this.players["c3d3fef1-ed32-4c97-afa8-72c9a01535e6"] = {
             "b0ffd5cc-2cd0-4f3a-802a-ed14bf037a71" : {
                 id : "b0ffd5cc-2cd0-4f3a-802a-ed14bf037a71",
@@ -123,8 +130,13 @@ class API {
         return event_id;
     }
 
-    static getEvent(event_id: string): event {
-        return this.events[event_id];
+    static getEvent(event_id: string): {"event": event, "players": player[]} {
+        return {event: this.events[event_id], players: this.events[event_id].players.map((player_id: string) => this.players[event_id][player_id])};
+    }
+
+    static getAllEvents(): { [event_id: string]: event } {
+        // ONLY FOR DEBUGGING PURPOSES
+        return this.events;
     }
 
     static addPlayerToEvent(event_id: string, player_id: string, pseudo: string) {

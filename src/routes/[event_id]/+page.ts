@@ -1,3 +1,5 @@
+/* -- SPECIFIC EVENT PAGE -- */
+
 import API from "../../APIMock";
 import type {PageLoad} from "./$types";
 
