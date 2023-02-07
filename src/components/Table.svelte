@@ -1,22 +1,11 @@
 <script lang="ts">
     import type {player} from "../APIMock";
-    import {playerRank} from "../routes/utils";
+    import {playerRank, scoreToMedal} from "../routes/utils";
 
     export let data: player[];
 
     function playerScore(playerIndex): number {
         return 1 * data[playerIndex].wins.length + -1 * data[playerIndex].loss.length + -2 * data[playerIndex].yet_to_be_done.length;
-    }
-
-    function scoreToMedal(player: player): "cell-empty" | "cell-gold" | "cell-silver" | "cell-copper" {
-        const rank = playerRank(data, player.id);
-        if (rank === 1)
-            return "cell-gold";
-        else if (rank === 2)
-            return "cell-silver";
-        else if (rank === 3)
-            return "cell-copper";
-        return "cell-empty"
     }
 </script>
 
@@ -32,14 +21,14 @@
             {#if id === otherPlayer.id}
                 <div class="cell cell-1 cell-empty"></div>
             {:else if wins.includes(otherPlayer.id)}
-                <div class="cell cell-1 cell-win">+1</div>
+                <div class="cell cell-1 win">+1</div>
             {:else if loss.includes(otherPlayer.id)}
-                <div class="cell cell-1 cell-loss">-1</div>
+                <div class="cell cell-1 loss">-1</div>
             {:else if yet_to_be_done.includes(otherPlayer.id)}
-                <div class="cell cell-1 cell-yettobedone">-2</div>
+                <div class="cell cell-1 yettobedone">-2</div>
             {/if}
         {/each}
-        <div class="cell cell-1 cell-score {scoreToMedal(data[i])}">{playerScore(i)}</div>
+        <div class="cell cell-1 cell-score {scoreToMedal(data, data[i])}">{playerScore(i)}</div>
     {/each}
 </div>
 
@@ -65,18 +54,6 @@
         @apply bg-gray-700;
     }
 
-    .cell-win {
-        @apply bg-green-700;
-    }
-
-    .cell-loss {
-        @apply bg-red-700;
-    }
-
-    .cell-yettobedone {
-        @apply bg-blue-700;
-    }
-
     .cell-pseudo {
         min-width: 6rem;
         @apply mr-5 text-left pl-2 overflow-hidden;
@@ -89,17 +66,5 @@
     .cell-score {
         min-width: 4rem;
         @apply ml-5 font-bold text-lg;
-    }
-
-    .cell-gold {
-        @apply bg-gradient-to-br from-yellow-500 to-yellow-700;
-    }
-
-    .cell-silver {
-        @apply bg-gradient-to-br from-zinc-400 to-zinc-600;
-    }
-
-    .cell-copper {
-        @apply bg-gradient-to-br from-yellow-700 to-yellow-900;
     }
 </style>

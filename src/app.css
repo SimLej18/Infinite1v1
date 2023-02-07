@@ -13,3 +13,31 @@ h2 {
 h2 {
     @apply text-xl;
 }
+
+.cell-gold {
+    @apply bg-gradient-to-br from-yellow-500 to-yellow-700;
+}
+
+.cell-silver {
+    @apply bg-gradient-to-br from-zinc-400 to-zinc-600;
+}
+
+.cell-copper {
+    @apply bg-gradient-to-br from-yellow-700 to-yellow-900;
+}
+
+.cell-no-podium {
+    @apply bg-gray-700;
+}
+
+.win {
+    @apply bg-green-700 !important;
+}
+
+.loss {
+    @apply bg-red-700 !important;
+}
+
+.yettobedone {
+    @apply bg-blue-700 !important;
+}

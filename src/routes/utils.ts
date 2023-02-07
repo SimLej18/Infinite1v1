@@ -1,6 +1,6 @@
 import type {event, player} from "../APIMock";
 
-const resultValues = {"loss": -1, "yet-to-be-done": -2, "wins": +1}
+export const resultValues = {"loss": -1, "yet-to-be-done": -2, "wins": +1}
 
 
 export function getPlayerFromList(players: player[], player_id: string): player {
@@ -21,4 +21,15 @@ export function playerRank(players: player[], player_id: string): number {
             countUp++;
     }
     return countUp
+}
+
+export function scoreToMedal(players: player[], player: player): "cell-no-podium" | "cell-gold" | "cell-silver" | "cell-copper" {
+    const rank = playerRank(players, player.id);
+    if (rank === 1)
+        return "cell-gold";
+    else if (rank === 2)
+        return "cell-silver";
+    else if (rank === 3)
+        return "cell-copper";
+    return "cell-no-podium"
 }
